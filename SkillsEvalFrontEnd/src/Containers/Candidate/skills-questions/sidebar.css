@@ -1,0 +1,23 @@
+/* ComponentWithCustomScrollbar.css */
+
+.custom-scrollbar {
+    /* Set the height and width of the container to enable scrolling */
+    height: 495px; /* Example height */
+    width: 100%; /* Example width */
+    overflow-y: scroll; /* Enable vertical scrollbar */
+    scrollbar-width: thin; /* Set the width of the scrollbar (only supported in Firefox) */
+
+    /* For WebKit-based browsers (Chrome, Safari, etc.) */
+    ::-webkit-scrollbar {
+        width: 2px; /* Set the width of the scrollbar */
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #ddd; /* Set the background color of the scrollbar track */
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #888; /* Set the color of the scrollbar thumb */
+        border-radius: 2px; /* Set the border radius of the scrollbar thumb */
+    }
+}

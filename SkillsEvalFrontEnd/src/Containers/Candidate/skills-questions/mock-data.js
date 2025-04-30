@@ -1,0 +1,122 @@
+export const mock_questions=[
+    {
+        question_text:'What is the output of typeof null in JavaScript?',
+        options:['Object','null','Undefined','String'],
+        "correct_answer": "pop()",
+        "difficulty": "easy",
+    },
+    {
+        question_text:'How do you write a conditional statement for executing code if x is equal to 5 in JavaScript?',
+        options:['Object','null','Undefined','String'],
+        "correct_answer": "pop()",
+        "difficulty": "easy",
+    },
+    {
+        question_text:'What method is used to add an item to the end of an array in JavaScript?What method is used to add an item to the end of an array in JavaScript?',
+        options:['Object','null','Undefined','String'],
+        "correct_answer": "pop()",
+        "difficulty": "easy",
+    },
+    {
+        question_text:'What method is used to add an item to the end of an array in JavaScript?',
+        options:['Object','null','Undefined','String'],
+        "correct_answer": "pop()",
+        "difficulty": "easy",
+    },
+    {
+        question_text:'What is the output of typeof null in JavaScript?',
+        options:['Object','null','Undefined','String'],
+        "correct_answer": "pop()",
+        "difficulty": "easy",
+    },
+    {
+        question_text:'How do you write a conditional statement for executing code if x is equal to 5 in JavaScript?',
+        options:['Object','null','Undefined','String'],
+        "correct_answer": "pop()",
+        "difficulty": "easy",
+    },
+    {
+        question_text:'What method is used to add an item to the end of an array in JavaScript?What method is used to add an item to the end of an array in JavaScript?',
+        options:['Object','null','Undefined','String'],
+        "correct_answer": "pop()",
+        "difficulty": "easy",
+    },
+    {
+        question_text:'What method is used to add an item to the end of an array in JavaScript?',
+        options:['Object','null','Undefined','String'],
+        "correct_answer": "pop()",
+        "difficulty": "easy",
+    },
+    {
+        question_text:'What is the output of typeof null in JavaScript?',
+        options:['Object','null','Undefined','String'],
+        "correct_answer": "pop()",
+        "difficulty": "easy",
+    },
+    {
+        question_text:'How do you write a conditional statement for executing code if x is equal to 5 in JavaScript?',
+        options:['Object','null','Undefined','String'],
+        "correct_answer": "pop()",
+        "difficulty": "easy",
+    },
+    {
+        question_text:'What method is used to add an item to the end of an array in JavaScript?What method is used to add an item to the end of an array in JavaScript?',
+        options:['Object','null','Undefined','String'],
+        "correct_answer": "pop()",
+        "difficulty": "easy",
+    },
+    {
+        question_text:'What method is used to add an item to the end of an array in JavaScript?',
+        options:['Object','null','Undefined','String'],
+        "correct_answer": "pop()",
+        "difficulty": "easy",
+    },
+    {
+        question_text:'How do you write a conditional statement for executing code if x is equal to 5 in JavaScript?',
+        options:['Object','null','Undefined','String'],
+        "correct_answer": "pop()",
+        "difficulty": "easy",
+    },
+    {
+        question_text:'What method is used to add an item to the end of an array in JavaScript?What method is used to add an item to the end of an array in JavaScript?',
+        options:['Object','null','Undefined','String'],
+        "correct_answer": "pop()",
+        "difficulty": "easy",
+    },
+    {
+        question_text:'What method is used to add an item to the end of an array in JavaScript?',
+        options:['Object','null','Undefined','String'],
+        "correct_answer": "pop()",
+        "difficulty": "easy",
+    },
+    {
+        question_text:'How do you write a conditional statement for executing code if x is equal to 5 in JavaScript?',
+        options:['Object','null','Undefined','String'],
+        "correct_answer": "pop()",
+        "difficulty": "easy",
+    },
+    {
+        question_text:'What method is used to add an item to the end of an array in JavaScript?What method is used to add an item to the end of an array in JavaScript?',
+        options:['Object','null','Undefined','String'],
+        "correct_answer": "pop()",
+        "difficulty": "easy",
+    },
+    {
+        question_text:'What method is used to add an item to the end of an array in JavaScript?',
+        options:['Object','null','Undefined','String'],
+        "correct_answer": "pop()",
+        "difficulty": "easy",
+    },
+    {
+        question_text:'What method is used to add an item to the end of an array in JavaScript?What method is used to add an item to the end of an array in JavaScript?',
+        options:['Object','null','Undefined','String'],
+        "correct_answer": "pop()",
+        "difficulty": "easy",
+    },
+    {
+        question_text:'What method is used to add an item to the end of an array in JavaScript?',
+        options:['Object','null','Undefined','String'],
+        "correct_answer": "pop()",
+        "difficulty": "easy",
+    }
+]

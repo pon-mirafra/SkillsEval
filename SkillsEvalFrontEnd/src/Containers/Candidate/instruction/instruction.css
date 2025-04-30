@@ -1,0 +1,50 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 8px;
+    padding: 12px;
+    overflow: hidden;
+}
+
+.instructions {
+    width: 600px;
+    height: 562px;
+    top:164px;
+    left: 80px;
+    font-size: 16px;
+    line-height: 24px;
+}
+.test-conduct {
+    width: 500px;
+    font-size: 16px;
+    line-height: 24px;
+    margin-right: 10px;
+}
+button{
+    background-color: #1A5276;
+    padding:14px, 24px, 14px, 24px;
+    border-radius:8px;
+    width:110px;
+    height: 40px;
+    gap:48px;
+    color:white;
+}
+
+.viewResultButton{
+    height:25px;
+    gap:0px;
+}
+
+.tableView{
+    float:left;
+    margin-left: 6rem;
+}
+
+.header-btn{
+    background-color: #1A5276;
+    padding:14px, 24px, 14px, 24px;
+    border-radius:8px;
+    width:85px;
+    height: 40px;
+    gap:48px
+}
