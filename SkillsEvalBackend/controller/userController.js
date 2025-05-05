@@ -34,8 +34,8 @@ const generateaccessAndRefreshToken = async (userId) => {
 
 const registerUser = asyncHandler(async (req, res) => {
   console.log("here1>>>");
-  const { email, username, password, fullname } = req.body;
-  if (!firstName || !lastName || !password || !username || !email || !roleId) {
+  const { email, firstName, password, lastName,roleId } = req.body;
+  if (!firstName || !lastName || !password  || !email || !roleId) {
     throw new ApiError(400, "All fields are required");
   }
 
@@ -45,7 +45,7 @@ const registerUser = asyncHandler(async (req, res) => {
     throw new ApiError(409, "user already exists");
   }
 
-  console.log(req.files, "files");
+  // console.log(req.files, "files");
 
   // const avatarLocalPath = await req.files.avatar[0]?.path;
   // const coverLocalPath = await req.files.coverImage[0]?.path;
@@ -67,7 +67,8 @@ const registerUser = asyncHandler(async (req, res) => {
       // coverImage: coverImageUrl.url,
       // avatar: avatarUrl.url,
       email,
-      username: username.toLowerCase(),
+      roleId,
+      // username: username.toLowerCase(),
       password,
     });
 
@@ -92,8 +93,8 @@ const registerUser = asyncHandler(async (req, res) => {
     // }
 
     throw new ApiError(
-      500,
-      "something went wrong while register a user and image was deleted"
+       500,
+  "something went wrong while register a user and image was deleted"
     );
   }
 });
