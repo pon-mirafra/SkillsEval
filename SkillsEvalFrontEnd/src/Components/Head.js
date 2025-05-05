@@ -30,11 +30,11 @@ const Head = () => {
   const firstLetter = userName.charAt(0).toUpperCase();
 
   const handleLogout = async () => {
-    const token = sessionStorage.getItem("token");
+    // const token = sessionStorage.getItem("token");
     try {
-      await signOut(token);
-      sessionStorage.removeItem("email");
-      sessionStorage.removeItem("token");
+      await signOut();
+      // sessionStorage.removeItem("email");
+      // sessionStorage.removeItem("token");
       navigate("/");
     } catch (error) {
       console.error("Logout error:", error);

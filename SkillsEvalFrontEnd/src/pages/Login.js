@@ -19,16 +19,18 @@ const Login = () => {
   const [loginError, setLoginError] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
 
   const onSubmit = async (data) => {
     try {
       const loginResponse = await signIn(data);
+      console.log(loginResponse)
 
       // if (loginResponse.data.message) {
       //   sessionStorage.setItem("email", data.email); // Store email in local storage
       //   navigate("/createlink");
 
-      if (loginResponse.data.token) { // Ensure token is present
+      if (loginResponse.data.message === "user loggedin successfully") { // Ensure token is present
         sessionStorage.setItem("email", data.email);
         sessionStorage.setItem("token", loginResponse.data.token); // Store token in sessionStorage
         navigate("/createlink");
@@ -58,6 +60,7 @@ const Login = () => {
             />
             {errors.email && <p className="text-red-500 mt-1">{errors.email.message}</p>}
           </div>
+
           <div className="mb-6">
             <label htmlFor="password" className="block text-gray-700 text-center text-base">Enter your password</label>
             <input
@@ -68,15 +71,29 @@ const Login = () => {
               {...register('password', { onChange: (e) => setPassword(e.target.value) })}
             />
             {errors.password && <p className="text-red-500 mt-1">{errors.password.message}</p>}
-            {loginError && <p className="text-red-500 mt-1">{loginError}</p>} {/* Display login error message */}
-            <p className="mt-2 text-right"><a href="#" className="text-blue-500 hover:underline">Forget password?</a></p>
           </div>
+
+          <div className="mb-4">
+            <label htmlFor="email" className="block text-gray-700 text-center text-base">Enter your username</label>
+            <input
+              type="text"
+              id="text"
+              className={`form-input mt-2 py-1 block w-full border border-gray-300 rounded-md focus:outline-none focus:ring-0 focus:border-gray-400 text-center ${errors.email ? 'border-red-500' : ''}`}
+              placeholder="Username"
+              {...register('username', { onChange: (e) => setUsername(e.target.value) })}
+            />
+            {errors.username && <p className="text-red-500 mt-1">{errors.username.message}</p>}
+            {loginError && <p className="text-red-500 mt-1">{loginError}</p>} {/* Display login error message */}
+            <p className="mt-2 text-right"><a href="#" className="text-blue-500 hover:underline">Forgot password?</a></p>
+          </div>
+
           <button
             type="submit"
             className="bg-sky-800 hover:bg-sky-900 w-full text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
           >
             Login
           </button>
+
           <p className="mt-4 text-sm text-center text-slate-400">By Clicking Login, You Agree To Our</p>
           <p className="mb-4 text-sm text-center">Terms of Service <span className="text-slate-400">And</span> Privacy Policy</p>
         </form>

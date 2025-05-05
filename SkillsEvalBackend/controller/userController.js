@@ -4,6 +4,9 @@ import { ApiError } from "../utils/errorResponse.js";
 import { User } from "../models/userModal.js";
 // import { deleteFromCloud, uploadFiletoCloud } from "../utils/uploadCloud.js";
 import jwt from "jsonwebtoken";
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const generateaccessAndRefreshToken = async (userId) => {
   try {
@@ -16,9 +19,9 @@ const generateaccessAndRefreshToken = async (userId) => {
     const accessToken = await user.generateAccessToken();
     const refreshToken = await user.generateRefreshToken();
 
-    User.refreshToken = refreshToken;
+    user.refreshToken = refreshToken;
 
-    user.save({ validateBeforeSave: false }); // not validating any data before saving because  we have already validating in line 76
+    await user.save({ validateBeforeSave: false }); // not validating any data before saving because  we have already validating in line 76
 
     return {
       accessToken,
@@ -140,6 +143,13 @@ const loginUser = asyncHandler(async (req, res) => {
     .cookie("accesstoken", accessToken, option)
     .cookie("refreshtoken", refreshToken)
     .json(new apiResponse(200, loggedinUser, "user loggedin successfully"));
+
+  // res
+  //   .status(200)
+  //   .json({
+  //     accessToken: accessToken,
+  //     loggedinUser: loggedinUser
+  //   })
 });
 
 const refreshAccessToken = asyncHandler(async (req, res) => {
