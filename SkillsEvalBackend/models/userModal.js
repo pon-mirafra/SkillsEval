@@ -4,14 +4,14 @@ import jwt from "jsonwebtoken";
 
 const userSchema = new Schema(
   {
-    username: {
-      type: String,
-      require: true,
-      unique: true,
-      lowercase: true,
-      trim: true,
-      index: true,
-    },
+    // username: {
+    //   type: String,
+    //   require: true,
+    //   unique: true,
+    //   lowercase: true,
+    //   trim: true,
+    //   index: true,
+    // },
 
     email: {
       type: String,
@@ -22,14 +22,14 @@ const userSchema = new Schema(
       index: true,
     },
 
-    email: {
-        type: Number,
-        require: true,
-        unique: true,
-        lowercase: true,
-        trim: true,
-        index: true,
-      },
+    // email: {
+    //     type: Number,
+    //     require: true,
+    //     unique: true,
+    //     lowercase: true,
+    //     trim: true,
+    //     index: true,
+    //   },
 
     fullName: {
       type: String,
@@ -44,10 +44,10 @@ const userSchema = new Schema(
       required: true,
     },
 
-    avatar: {
-      type: String, // cloud url
-      require: true,
-    },
+    // avatar: {
+    //   type: String, // cloud url
+    //   require: true,
+    // },
 
     password: {
       type: String,

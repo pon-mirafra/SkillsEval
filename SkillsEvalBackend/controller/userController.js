@@ -1,8 +1,8 @@
 import { apiResponse } from "../utils/apiResponse.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiError } from "../utils/errorResponse.js";
-import { User } from "../models/user.model.js";
-import { deleteFromCloud, uploadFiletoCloud } from "../utils/uploadCloud.js";
+import { User } from "../models/userModal.js";
+// import { deleteFromCloud, uploadFiletoCloud } from "../utils/uploadCloud.js";
 import jwt from "jsonwebtoken";
 
 const generateaccessAndRefreshToken = async (userId) => {
@@ -35,7 +35,7 @@ const generateaccessAndRefreshToken = async (userId) => {
 const registerUser = asyncHandler(async (req, res) => {
   console.log("here1>>>");
   const { email, username, password, fullname } = req.body;
-  if (!fullname || !password || !username || !email) {
+  if (!firstName || !lastName || !password || !username || !email || !roleId) {
     throw new ApiError(400, "All fields are required");
   }
 
@@ -47,25 +47,25 @@ const registerUser = asyncHandler(async (req, res) => {
 
   console.log(req.files, "files");
 
-  const avatarLocalPath = await req.files.avatar[0]?.path;
-  const coverLocalPath = await req.files.coverImage[0]?.path;
+  // const avatarLocalPath = await req.files.avatar[0]?.path;
+  // const coverLocalPath = await req.files.coverImage[0]?.path;
 
-  if (!avatarLocalPath) {
-    throw new ApiError(400, "avatar file is missing");
-  }
+  // if (!avatarLocalPath) {
+  //   throw new ApiError(400, "avatar file is missing");
+  // }
 
-  const avatarUrl = await uploadFiletoCloud(avatarLocalPath);
-  console.log(avatarUrl);
-  let coverImageUrl = "";
-  if (coverLocalPath) {
-    coverImageUrl = await uploadFiletoCloud(coverLocalPath);
-  }
-  console.log(coverImageUrl);
+  // const avatarUrl = await uploadFiletoCloud(avatarLocalPath);
+  // console.log(avatarUrl);
+  // let coverImageUrl = "";
+  // if (coverLocalPath) {
+  //   coverImageUrl = await uploadFiletoCloud(coverLocalPath);
+  // }
+  // console.log(coverImageUrl);
   try {
     const user = await User.create({
-      fullName: fullname,
-      coverImage: coverImageUrl.url,
-      avatar: avatarUrl.url,
+      fullName: `${firstName}${lastName}`,
+      // coverImage: coverImageUrl.url,
+      // avatar: avatarUrl.url,
       email,
       username: username.toLowerCase(),
       password,
@@ -83,13 +83,13 @@ const registerUser = asyncHandler(async (req, res) => {
       .json(new apiResponse(201, createdUser, "user register successfully"));
   } catch (error) {
     console.log("user creation failed", error);
-    if (avatarUrl) {
-      await deleteFromCloud(avatarUrl?.public_id);
-    }
+    // if (avatarUrl) {
+    //   await deleteFromCloud(avatarUrl?.public_id);
+    // }
 
-    if (coverImageUrl) {
-      await deleteFromCloud(coverImageUrl?.public_id);
-    }
+    // if (coverImageUrl) {
+    //   await deleteFromCloud(coverImageUrl?.public_id);
+    // }
 
     throw new ApiError(
       500,

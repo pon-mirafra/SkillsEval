@@ -2,7 +2,7 @@ import express from "express"
 import cors from "cors"
 import cookieParser  from "cookie-parser"
 import  heathCheckRouter  from "./routes/heathCheckRoute.js"
-// import  userRouter from "../src/routes/user.routes.js"
+import  userRouter from "./routes/userRouter.js"
 import { errorHandler } from "./middleware/error.middleware.js"
 const app = express()
 
@@ -21,7 +21,7 @@ app.use(cookieParser())
 
 //routes
 app.use("/api/v1/healthcheck",heathCheckRouter)
-// app.use("/api/v1/users",userRouter)
+app.use("/api/v1/users",userRouter)
 
 
 
