@@ -6,7 +6,7 @@ const userSchema = new Schema(
   {
     username: {
       type: String,
-      require: true,
+      required: true,
       unique: true,
       lowercase: true,
       trim: true,
@@ -15,25 +15,16 @@ const userSchema = new Schema(
 
     email: {
       type: String,
-      require: true,
+      required: true,
       unique: true,
       lowercase: true,
       trim: true,
       index: true,
     },
 
-    // email: {
-    //     type: Number,
-    //     require: true,
-    //     unique: true,
-    //     lowercase: true,
-    //     trim: true,
-    //     index: true,
-    //   },
-
     fullName: {
       type: String,
-      require: true,
+      required: true,
       trim: true,
       index: true,
     },
@@ -46,12 +37,12 @@ const userSchema = new Schema(
 
     // avatar: {
     //   type: String, // cloud url
-    //   require: true,
+    //   required: true,
     // },
 
     password: {
       type: String,
-      require: [true, "password is required"],
+      required: [true, "password is required"],
     },
     refreshToken: {
       type: String,
@@ -82,15 +73,15 @@ userSchema.methods.isPasswordCorrect = async function (password) {
 };
 
 userSchema.methods.generateAccessToken = async function () {
-  jwt.sign(
-    { _id: this._id, email: this.email, userName: "this.userName" },
+  return jwt.sign(
+    { _id: this._id, email: this.email, userName: this.userName },
     process.env.ACCESS_TOKEN_SECRET,
     { expiresIn: process.env.ACCESS_TOKEN_EXPIRE }
   );
 };
 
 userSchema.methods.generateRefreshToken = async function () {
-  jwt.sign({ _id: this._id }, process.env.REFRESH_TOKEN_SECRET, {
+  return jwt.sign({ _id: this._id }, process.env.REFRESH_TOKEN_SECRET, {
     expiresIn: process.env.REFRESH_TOKEN_EXPIRE,
   });
 };

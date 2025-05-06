@@ -4,6 +4,9 @@ import { ApiError } from "../utils/errorResponse.js";
 import { User } from "../models/userModal.js";
 // import { deleteFromCloud, uploadFiletoCloud } from "../utils/uploadCloud.js";
 import jwt from "jsonwebtoken";
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const generateaccessAndRefreshToken = async (userId) => {
   try {
@@ -13,12 +16,12 @@ const generateaccessAndRefreshToken = async (userId) => {
       throw new ApiError(404, "user not found ");
     }
 
-    const accessToken = user.generateAccessToken();
-    const refreshToken = user.generateAccessToken();
+    const accessToken = await user.generateAccessToken();
+    const refreshToken = await user.generateRefreshToken();
 
-    User.refreshToken = refreshToken;
+    user.refreshToken = refreshToken;
 
-    User.save({ validaBeforeSave: false }); // not validating any data before saving because  we have already validating in line 76
+    await user.save({ validateBeforeSave: false }); // not validating any data before saving because  we have already validating in line 76
 
     return {
       accessToken,
@@ -34,8 +37,8 @@ const generateaccessAndRefreshToken = async (userId) => {
 
 const registerUser = asyncHandler(async (req, res) => {
   console.log("here1>>>");
-  const { email, firstName, password, lastName,roleId ,username} = req.body;
-  if (!firstName || !lastName || !password  || !email || !roleId|| !username) {
+  const { email, firstName, password, lastName, roleId, username } = req.body;
+  if (!firstName || !lastName || !password || !email || !roleId || !username) {
     throw new ApiError(400, "All fields are required");
   }
 
@@ -93,8 +96,8 @@ const registerUser = asyncHandler(async (req, res) => {
     // }
 
     throw new ApiError(
-       500,
-  "something went wrong while register a user and image was deleted"
+      500,
+      "something went wrong while register a user and image was deleted"
     );
   }
 });
@@ -102,17 +105,17 @@ const registerUser = asyncHandler(async (req, res) => {
 const loginUser = asyncHandler(async (req, res) => {
   const { email, username, password } = req.body;
 
-  if (email || username || password) {
+  if (!email || !username || !password) {
     throw new ApiError(404, "All fields are required");
   }
 
-  const user = User.findOne({ $or: [{ username }, { email }] });
+  const user = await User.findOne({ $or: [{ username }, { email }] });
 
   if (!user) {
     throw new ApiError(404, "user not found ");
   }
 
-  const ispasswordCorrect = User.isPasswordCorrect(password);
+  const ispasswordCorrect = await user.isPasswordCorrect(password);
 
   if (!ispasswordCorrect) {
     throw new ApiError(404, "Invalid user credentails ");
@@ -140,6 +143,13 @@ const loginUser = asyncHandler(async (req, res) => {
     .cookie("accesstoken", accessToken, option)
     .cookie("refreshtoken", refreshToken)
     .json(new apiResponse(200, loggedinUser, "user loggedin successfully"));
+
+  // res
+  //   .status(200)
+  //   .json({
+  //     accessToken: accessToken,
+  //     loggedinUser: loggedinUser
+  //   })
 });
 
 const refreshAccessToken = asyncHandler(async (req, res) => {
